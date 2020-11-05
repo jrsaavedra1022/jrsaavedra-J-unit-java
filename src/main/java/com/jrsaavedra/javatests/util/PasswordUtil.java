@@ -2,10 +2,21 @@ package com.jrsaavedra.javatests.util;
 
 public class PasswordUtil {
 
-    public enum SecurityLevel {
+    public  enum SecurityLevel {
         WEAK, MEDIUM, STRONG
     }
-    public SecurityLevel accessPassword(String password){
-        return null;
+    public static SecurityLevel accessPassword(String password){
+        if(password.length() < 8){
+            return SecurityLevel.WEAK;
+        }
+
+        if(password.matches("[a-zA-Z]+")){
+            return SecurityLevel.WEAK;
+        }
+
+        if(password.matches("[a-zA-Z0-9]+")){
+            return SecurityLevel.MEDIUM;
+        }
+        return SecurityLevel.STRONG;
     }
 }
